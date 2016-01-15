@@ -11,6 +11,17 @@
 - vagrant box add centos/atomic-host --provider virtualbox
 
 ## Pre-reqs
+
+### nexus
+
+[Nexus](http://www.sonatype.org/downloads/nexus-latest-bundle.zip) needs to be running on the vagrant host on port 8081, it is required for the fuse install to resolve some artifacts.
+
+### installs
+
+	[Download JBoss Fuse](https://developers.redhat.com/download-manager/file/jboss-fuse-6.2.1.GA-full_zip.zip)
+
+	mvn install:install-file -Dfile=/Users/${USERNAME}/Downloads/jboss-fuse-full-6.2.1.redhat-084.zip -DgroupId=org.jboss.fuse -DartifactId=jboss-fuse-full -Dversion=6.2.1.redhat-084 -Dpackaging=zip
+
 ### Plugins
 - vagrant plugin install vagrant-hostmanager
 - vagrant plugin install vagrant-vbguest
