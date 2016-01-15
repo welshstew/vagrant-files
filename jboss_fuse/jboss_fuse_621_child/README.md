@@ -3,7 +3,7 @@ Image to run JBoss Fuse 6.2.1 on a single VM.
 
 ## What does this image do?
 - Creates 1 VM
-- Installs Fuse via scaffolding scripts (See: https://github.com/garethahealy/jboss-fuse-setup)
+- Installs Fuse via scaffolding scripts (See: [https://github.com/garethahealy/jboss-fuse-setup](https://github.com/garethahealy/jboss-fuse-setup))
   - 1 Fabric (zookeeper)
   - 1 ESB
   - 1 AMQ
@@ -18,7 +18,7 @@ Image to run JBoss Fuse 6.2.1 on a single VM.
 The vagrant file expects to find any pre-req files in your m2 directory
 
 ## Log into hawt.io
-http://machine1.jbossfuse621.vagrant.local:8181
-U: admin
-P: admin
+- [http://child.jbossfuse621.vagrant.local:8181](http://child.jbossfuse621.vagrant.local:8181)
+- U: admin
+- P: admin
 
