@@ -18,4 +18,4 @@ cd /tmp &&
     unzip -o scaffolding-scripts.zip &&
     cd scripts &&
     chmod -R 755 *.sh &&
-    ./install-fuse-and-deploy.sh -e vagrant-ssh -u vagrant
+    ./install-fuse-and-deploy.sh -e vagrant-ssh
