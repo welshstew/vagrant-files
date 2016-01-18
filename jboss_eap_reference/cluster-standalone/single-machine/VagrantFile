@@ -73,10 +73,7 @@ Vagrant.configure(2) do |config|
     smc.vm.provision :"file", source: "../../app/cluster-demo.war", destination: "/opt/rh/jboss-eap-6.4.0/standalone-node-1/deployments/cluster-demo.war"
     smc.vm.provision :"file", source: "../../app/cluster-demo.war", destination: "/opt/rh/jboss-eap-6.4.0/standalone-node-2/deployments/cluster-demo.war"
 
-
-    smc.vm.provision :"file", source: "node1/jboss-as-standalone-node1.sh", destination: "/etc/init.d/jboss-as-standalone-node1.sh"
-    smc.vm.provision :"file", source: "node2/jboss-as-standalone-node2.sh", destination: "/etc/init.d/jboss-as-standalone-node2.sh"
-
+    smc.vm.provision :shell, path: "copy-to-initd.sh", privileged: true
 
     # Complete message
     smc.vm.post_up_message = "WHATEVER"
