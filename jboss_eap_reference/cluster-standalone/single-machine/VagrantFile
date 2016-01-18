@@ -69,6 +69,8 @@ Vagrant.configure(2) do |config|
     #open ports, create standalone folders
     smc.vm.provision :shell, path: "bootstrap.sh", privileged: false
 
+    smc.vm.provision :"file", source: "jboss-as.conf", destination: "/opt/rh/jboss-eap-6.4/bin/init.d/jboss-as.conf"
+
     #copy cluster.war over to the vm
     smc.vm.provision :"file", source: "../../app/cluster-demo.war", destination: "/opt/rh/jboss-eap-6.4/standalone-node-1/deployments/cluster-demo.war"
     smc.vm.provision :"file", source: "../../app/cluster-demo.war", destination: "/opt/rh/jboss-eap-6.4/standalone-node-2/deployments/cluster-demo.war"
