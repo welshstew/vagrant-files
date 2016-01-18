@@ -18,10 +18,10 @@ sudo yum install -y postgresql-server &&
 # Change password for postgres user
 echo "postgres" | sudo passwd "postgres" --stdin
 
-# Create rhq db
+# Create jboss cluster db
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
-sudo -u postgres psql -c "CREATE USER rhqadmin PASSWORD 'rhqadmin';"
-sudo -u postgres psql -c "CREATE DATABASE rhq OWNER rhqadmin;"
+sudo -u postgres psql -c "CREATE USER jboss PASSWORD 'password';"
+sudo -u postgres psql -c "CREATE DATABASE eap6 OWNER jboss;"
 
 # Change auth to be md5 based
 sudo sed -i "s/local   all             all                                     peer/local   all             all                                     md5/" /var/lib/pgsql/data/pg_hba.conf
@@ -39,5 +39,5 @@ sudo sh -c "echo 'host    all             all             10.20.3.2/24          
 sudo systemctl restart postgresql.service
 
 # Check rhqadmin user works
-export PGPASSWORD=rhqadmin &&
-    psql -U rhqadmin -d rhq -c "SELECT 1"
+export PGPASSWORD=password &&
+    psql -U jboss -d eap6 -c "SELECT 1"

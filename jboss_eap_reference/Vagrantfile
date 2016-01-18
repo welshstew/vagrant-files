@@ -46,34 +46,50 @@ Vagrant.configure(2) do |config|
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
 
-  # Postgres DB
-  config.vm.define "postgres" do |postgres|
-    # Assign network config
-    postgres.vm.hostname = "postgres.jbosseap.vagrant.local"
-    postgres.vm.network "private_network", ip: "10.20.3.21"
-
-    # Enable provisioning with a shell script. Additional provisioners such as
-    # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-    # documentation for more information about their specific syntax and use.
-    postgres.vm.provision :"file", source: "eap6-clustering/postgres/postgresql.conf", destination: "/var/lib/pgsql/data/postgresql.conf"
-    postgres.vm.provision :shell, path: "eap6-clustering/postgres/startPostgres.sh", privileged: false
-
-    # Complete message
-    postgres.vm.post_up_message = "vagrant ssh postgres"
-  end
+  # # Postgres DB
+  # config.vm.define "postgres" do |postgres|
+  #   # Assign network config
+  #   postgres.vm.hostname = "postgres.jbosseap.vagrant.local"
+  #   postgres.vm.network "private_network", ip: "10.20.3.21"
+  #
+  #   # Enable provisioning with a shell script. Additional provisioners such as
+  #   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  #   # documentation for more information about their specific syntax and use.
+  #   postgres.vm.provision :"file", source: "eap6-clustering/postgres/postgresql.conf", destination: "/var/lib/pgsql/data/postgresql.conf"
+  #   postgres.vm.provision :shell, path: "eap6-clustering/postgres/startPostgres.sh", privileged: false
+  #
+  #   # Complete message
+  #   postgres.vm.post_up_message = "vagrant ssh postgres"
+  # end
 
   # JBoss EAP Apache HTTP Server
   config.vm.define "jbossapachehttp" do |jbossapachehttp|
     # Assign network config
-    postgres.vm.hostname = "apachehttp.jbosseap.vagrant.local"
-    postgres.vm.network "private_network", ip: "10.20.3.20"
+    jbossapachehttp.vm.hostname = "apachehttp.jbosseap.vagrant.local"
+    jbossapachehttp.vm.network "private_network", ip: "10.20.3.20"
 
-    postgres.vm.provision :"file", source: "eap6-clustering/postgres/postgresql.conf", destination: "/var/lib/pgsql/data/postgresql.conf"
-    postgres.vm.provision :shell, path: "eap6-clustering/postgres/startPostgres.sh", privileged: false
+    jbossapachehttp.vm.provision :"file", source: "~/.m2/repository/org/jboss/eap/jboss-ews-httpd/2.1.0-RHEL7-x86_64/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip", destination: "/tmp/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip"
+    # jbossapachehttp.vm.provision :"file", source: "~/.m2/repository/org/jboss/eap/jboss-ews-httpd/2.1.0-RHEL7-x86_64/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip", destination: "/tmp/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip"
+    jbossapachehttp.vm.provision :shell, path: "eap6-clustering/httpd/install-httpd.sh", privileged: false
 
     # Complete message
-    postgres.vm.post_up_message = "vagrant ssh jbossapachehttp"
+    jbossapachehttp.vm.post_up_message = "vagrant ssh jbossapachehttp"
   end
+
+
+  # # JBoss EAP Apache HTTP Server
+  # config.vm.define "jbossapachehttp" do |jbossapachehttp|
+  #   # Assign network config
+  #   jbossapachehttp.vm.hostname = "apachehttp.jbosseap.vagrant.local"
+  #   jbossapachehttp.vm.network "private_network", ip: "10.20.3.20"
+  #
+  #   jbossapachehttp.vm.provision :"file", source: "~/.m2/repository/org/jboss/eap/jboss-ews-httpd/2.1.0-RHEL7-x86_64/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip", destination: "/tmp/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip"
+  #   jbossapachehttp.vm.provision :"file", source: "~/.m2/repository/org/jboss/eap/jboss-ews-httpd/2.1.0-RHEL7-x86_64/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip", destination: "/tmp/jboss-ews-httpd-2.1.0-RHEL7-x86_64.zip"
+  #   jbossapachehttp.vm.provision :shell, path: "eap6-clustering/httpd/install-httpd.sh", privileged: false
+  #
+  #   # Complete message
+  #   jbossapachehttp.vm.post_up_message = "vagrant ssh jbossapachehttp"
+  # end
 
 
   # # JON Server
