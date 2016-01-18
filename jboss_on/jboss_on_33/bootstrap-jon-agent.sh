@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#allow access to hawtio console
+sudo firewall-cmd --zone=public --add-port=8181/tcp --permanent
+sudo firewall-cmd --reload
+
 set -x
 
 # Run scaffolding scripts to install JBoss Fuse

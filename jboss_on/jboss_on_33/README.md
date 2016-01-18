@@ -22,6 +22,9 @@ The vagrant file expects to find any pre-req files in your m2 directory
 - U: rhqadmin
 - P: rhqadmin
 
+## See Fuse Hawtio Console
+- [http://jonagent.jbosson33.vagrant.local:8181/](http://jonagent.jbosson33.vagrant.local:8181/)
+
 ## TODO:
 Seem to get the below error when trying to run the start script for jon agent
 
