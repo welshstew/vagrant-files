@@ -16,7 +16,7 @@ sudo firewall-cmd --zone=public --add-port=5432/tcp --permanent
 sudo firewall-cmd --zone=public --add-port=81-82/tcp --permanent
 
 #http
-sudo firewall-cmd --zone=public --add-port=8000-8200/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=8000-8300/tcp --permanent
 #sudo firewall-cmd --zone=public --add-port=8180/tcp --permanent
 #
 ##AJP
@@ -35,12 +35,21 @@ sudo firewall-cmd --zone=public --add-port=10090/tcp --permanent
 #infinispan node 1
 sudo firewall-cmd --zone=public --add-port=55300/tcp --permanent
 
+#admin console node 2
+sudo firewall-cmd --zone=public --add-port=10190/tcp --permanent
+#infinispan node 2
+sudo firewall-cmd --zone=public --add-port=55400/tcp --permanent
 
 #reload rules
 sudo firewall-cmd --reload
 
 unzip /opt/rh/jboss-eap-6.4.0.zip -d /opt/rh/
 mkdir /opt/rh/jboss-eap-6.4/standalone/log
+
+#add admin user
+/opt/rh/jboss-eap-6.4/bin/add-user.sh admin password1! --silent
+
+#make 2 nodes
 cp -r /opt/rh/jboss-eap-6.4/standalone /opt/rh/jboss-eap-6.4/standalone-node-1
 cp -r /opt/rh/jboss-eap-6.4/standalone /opt/rh/jboss-eap-6.4/standalone-node-2
 sudo chown -R vagrant:vagrant /opt/rh/jboss-eap-6.4
