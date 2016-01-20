@@ -30,15 +30,8 @@ sudo firewall-cmd --zone=public --add-port=4547/tcp --permanent
 #domain
 sudo firewall-cmd --zone=public --add-port=9999/tcp --permanent
 
-#admin console node 1
-sudo firewall-cmd --zone=public --add-port=10090/tcp --permanent
-#infinispan node 1
-sudo firewall-cmd --zone=public --add-port=55300/udp --permanent
-
-#admin console node 2
-sudo firewall-cmd --zone=public --add-port=10190/tcp --permanent
-#infinispan node 2
-sudo firewall-cmd --zone=public --add-port=55400/udp --permanent
+sudo firewall-cmd --zone=public --add-port=9990/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=55200/tcp --permanent
 
 #reload rules
 sudo firewall-cmd --reload
