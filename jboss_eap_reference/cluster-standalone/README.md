@@ -31,5 +31,8 @@ JBoss in standalone cluster
  - password: password1!
  
  
+## Standalone TCP
+
+[http://middlewaremagic.com/jboss/?p=2015](http://middlewaremagic.com/jboss/?p=2015)
 
  
