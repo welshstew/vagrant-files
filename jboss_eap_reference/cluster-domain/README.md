@@ -1,0 +1,1 @@
+- [How to create cluster in JBoss AS 7.1 in domain mode?](http://middlewaremagic.com/jboss/?p=1969)
